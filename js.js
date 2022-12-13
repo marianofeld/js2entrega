@@ -14,36 +14,31 @@ let opcionCarne
 let precio = 0
 
 
+function array(array) {
+    for (let index = 0; index < array.length; index++) {
+        alert("opcion " + (index + 1) + " " + array[index].nombre + " el precio es " + array[index].precio)
+        if (index == array.length - 1) {
+            opcionVegano = prompt("Que opcion deseas pedir")
+            precio = array[opcionVegano - 1].precio + precio
+        }
+        console.log(precio)
+    }
+}
+
 do {
     pregunta = Number(prompt("Indique\nopcion 1\nsi desea productos veganos \nopcion 2\nsi desea productos con carne\nopcion 3 \nfinalizar la compra"))
     let vegano = menu.filter((producto) => (producto.vegana == true))
     let carne = menu.filter((producto) => (producto.vegana == false))
     if (pregunta == 1) {
-        for (let index = 0; index < vegano.length; index++) {
-            alert("opcion " + (index + 1) + " " + vegano[index].nombre + " el precio es " + vegano[index].precio)
-            if (index == vegano.length - 1) {
-                let opcionVegano = prompt("Que opcion deseas pedir")
-                precio = vegano[opcionVegano - 1].precio + precio
-            }
-            console.log(precio)
-            // aca termina de pedir vegano
-
-        }
-
-    } else if (pregunta == 2) {
-        for (let index = 0; index < carne.length; index++) {
-            alert("opcion " + (index + 1) + " " + carne[index].nombre + " el precio es " + carne[index].precio)
-            if (index == carne.length - 1) {
-                let opcionCarne = prompt("Que opcion deseas pedir")
-                precio = carne[opcionCarne - 1].precio + precio
-            }
-        }
-
-        console.log(precio)
+        array(vegano)
     }
-    // aca termina de pedir carne
+    else if (pregunta == 2) {
+        array(carne)
+    }
+
 } while (pregunta != 3)
+
 if (pregunta == 3) {
-    alert(nombre +" el precio a pagar es " + precio)
+    alert(nombre + " el precio a pagar es " + precio)
 }
 
